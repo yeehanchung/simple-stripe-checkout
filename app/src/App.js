@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 
 // UI Components
+import styles from "./App.module.css";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -60,19 +61,19 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.ctn}>
       <h2>Pro Plus Plan</h2>
       <h4>MYR {quantity * 15} per year</h4>
 
-      <span>30 days free</span>
-      <span>Quantity: {quantity}</span>
+      <span className={styles.description}>30 days free</span>
+      <span className={styles.quantity}>Quantity: {quantity}</span>
 
-      <div>
+      <div className={styles.buttonGroup}>
         <button onClick={decrement}>-</button>
         <button onClick={increment}>+</button>
       </div>
 
-      <button onClick={handleOnClickCheckout} disabled={isLoading}>
+      <button onClick={handleOnClickCheckout} disabled={isLoading} className={styles.buttonCta}>
         {isLoading? "Loading..." : "Checkout"}
       </button>
 
